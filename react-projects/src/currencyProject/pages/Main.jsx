@@ -1,4 +1,5 @@
 import React from 'react'
+import Currency from '../components/Currency'
 
 const Main = () => {
   return (
@@ -9,14 +10,11 @@ const Main = () => {
       backgroundPosition: 'center',
       width: '100vw', // Sayfanın tam genişliği
       height: '100vh', // Sayfanın tam yüksekliği
-      opacity: '0.5', // Opacity (0.0 - 1.0 aralığında değer alır, 1.0 tam opak)
-       // Grayscale (0% - 100% aralığında değer alır, 0% orijinal renk, 100% tamamen gri tonlaması)
+       // Opacity (0.0 - 1.0 aralığında değer alır, 1.0 tam opak)
+      filter: 'grayscale(0.5)',
+
     }}>
-        <div className='w-[100%] h-[100%] bg-[#a0f8ba56] flex justify-center items-center'>
-        <div className='z-10 bg-[#21f428a2] w-[70%] h-[40%] rounded-2xl'>
-            <p className='text-black text-center'>fasdf </p>  
-        </div>
-        </div>
+        <Currency/>
     </div>
   )
 }

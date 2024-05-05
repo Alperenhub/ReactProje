@@ -4,11 +4,12 @@ import ApiPost from './apiExplained/ApiPost'
 import ApiPutUpdate from './apiExplained/ApiPutUpdate'
 import ApiDelete from './apiExplained/ApiDelete'
 import Main from './currencyProject/pages/Main'
+import MainApp from './reduxToolkitExp/pages/MainApp'
 
 const App = () => {
   return (
     <div>
-      <Main/>
+      <MainApp/>
     </div>
   )
 }
