@@ -1,11 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({product}) => {
     const {id,price, image, title, description} = product;
-    console.log(title)
+    
+    const navigate = useNavigate();
+
   return (
     
-    <div className=' w-[200px] h-[100%] shadow-md rounded-md cursor-pointer  hover:shadow-lg ease-in-out duration-200'>
+    <div className=' w-[200px] h-[100%] shadow-md rounded-md cursor-pointer  hover:shadow-xl ease-in-out duration-200'>
       <div className='flex items-center justify-center'>
       <img className='w-[150px] h-[200px] ' src={image} alt={title} />
       </div>
@@ -14,7 +17,7 @@ const Product = ({product}) => {
       <h3 className='font-bold text-center'>{price} ₺</h3>
       </div>
     <div className='flex items-center justify-center my-2'>
-        <button className='bg-gray-500 rounded-lg px-2 py-1'>Ürüne git</button>
+        <button onClick={()=>navigate(`product-details/${id}`)} className='bg-gray-500 rounded-lg px-2 py-1'>Ürüne git</button>
     </div>
 
     </div>
