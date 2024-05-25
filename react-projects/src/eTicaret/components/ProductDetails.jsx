@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { setSelectedProduct } from '../redux/slices/productSlice';
 import { CiCircleMinus } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
+import { addToBasket } from '../redux/slices/basketSlice';
 
 
 
@@ -24,6 +25,18 @@ const ProductDetails = () => {
         if(counter>0){
         setCounter(counter-1)
         }
+    }
+
+    const addBasket = () =>{
+        const payload ={
+            id, //"id: id" ifadesini yazmak yerine yani iki taraf da aynıysa sağ tarafı yazmaya gerek yok. 
+            price,
+            image,
+            title,
+            description,
+            counter
+        }
+        dispatch(addToBasket(payload))
     }
 
     useEffect(()=>{
@@ -58,7 +71,8 @@ const ProductDetails = () => {
             </div>
 
             <div>
-                <button className='mt-7 border-none p-2 bg-slate-300 rounded-md'>sepete ekle</button>
+                <button onClick={addBasket}
+                className='mt-7 border-none p-2 bg-slate-300 rounded-md'>sepete ekle</button>
             </div>
 
             </div>
