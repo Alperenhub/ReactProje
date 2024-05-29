@@ -6,6 +6,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CiSun } from "react-icons/ci";
 import { FaMoon } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDrawer } from '../redux/slices/basketSlice';
+
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -24,6 +27,10 @@ const Header = () => {
   const [theme, setTheme] = useState(false);
 
   const navigate = useNavigate();
+
+  const {products} = useSelector((store)=>store.basket);
+
+  const dispatch = useDispatch();
 
   const changeTheme = () =>{
     const root = document.getElementById("root");
@@ -53,11 +60,13 @@ const Header = () => {
  :    <FaMoon onClick={changeTheme} className='text-lg hover:cursor-pointer mt-3'/> 
   }
     <IconButton aria-label="cart">
-        <StyledBadge badgeContent={4} color="error">
+        <StyledBadge onClick={()=>dispatch(setDrawer())} badgeContent={products.length} color="error">
           <ShoppingCartIcon />
         </StyledBadge>
     </IconButton>
           </div>
+
+          
       </div>
 
     </div>

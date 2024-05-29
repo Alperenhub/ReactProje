@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     products: [],
+    drawer: false,
+    totalAmount: 0,
 
 }
 
@@ -29,15 +31,32 @@ export const basketSlice = createSlice({
         const findProduct =  state.products && state.products.find((product)=> product.id === action.payload.id);
         if(findProduct){
             //daha önceden eklenmiştir.
+            const extractedProducts = state.products.filter((product)=>product.id != action.payload.id);
+
+            findProduct.counter += action.payload.counter;
+
+            state.products = [...extractedProducts, findProduct];
+            writeFromBasketToStorage(state.products);
+
         }else{
             state.products = [...state.products, action.payload];
             writeFromBasketToStorage(state.products);
         }
         
+        },
+
+        setDrawer : (state) => {
+            state.drawer = !state.drawer;
+        },
+
+        calculateBasket : (state, action) =>{
+            state.products && state.products.map((product)=>{
+                state.totalAmount += product.price;
+            })
         }
     }
 })
 
-export const {addToBasket } = basketSlice.actions
+export const {addToBasket, setDrawer, calculateBasket } = basketSlice.actions
 
 export default basketSlice.reducer
